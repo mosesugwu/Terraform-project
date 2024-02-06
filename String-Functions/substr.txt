@@ -1,0 +1,3 @@
+substr("hello world", 1, 4)
+
+substr("hello world", 1, 6)
