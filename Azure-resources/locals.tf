@@ -8,7 +8,7 @@ locals {
   }
 
   application_tags = {
-    username             = "moses-admin"
+    username = "moses-admin"
     # storage_account_name = "mosesstore"
     # container_name       = "terraformstate"
   }
