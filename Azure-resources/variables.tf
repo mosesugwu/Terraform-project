@@ -75,13 +75,17 @@ variable "resource_group_name" {
 
 variable "virtual_machine_name" {
   description = "(Required) The name of the Linux Virtual Machine. Changing this forces a new resource to be created."
-  type = string 
-  
+  type        = string
+
 }
 
 variable "source_address_prefix" {
   description = "value"
-  type = string
-  
-}
+  type        = string
 
+}
+variable "disk_size_gb" {
+  description = "This is the size of disk to be mounted"
+  type        = string
+
+}
