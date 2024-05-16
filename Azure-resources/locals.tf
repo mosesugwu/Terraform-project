@@ -1,9 +1,9 @@
 locals {
   common_tags = {
-    CompanyName = "Moses Dev"
+   CompanyName = "Moses Dev"
     Provider    = "Azure Cloud"
     ManagedWith = "Terraform"
-    Casecode    = "moses2024"
+    Casecode    = "moses2024" 
 
   }
 

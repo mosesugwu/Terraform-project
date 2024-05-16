@@ -89,3 +89,18 @@ variable "disk_size_gb" {
   type        = string
 
 }
+
+variable "db_user" {
+  description = "Database USerName"
+  type        = string
+}
+
+variable "db_name" {
+  description = "Database Name"
+  type        = string
+}
+
+variable "linux_user" {
+  description = "Linux UserName"
+  type        = string
+}
