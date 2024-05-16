@@ -3,3 +3,11 @@ output "vm_public_ip" {
 
 }
 
+# output "local_dns" {
+#   value = "http://${azurerm_public_ip.pip_lb.ip_address}:80/login.php"
+# }
+
+output "dns" {
+  value = "https://www.${data.azurerm_dns_zone.zone.name}/login.php"
+}
+

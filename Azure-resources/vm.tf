@@ -24,25 +24,39 @@ resource "azurerm_linux_virtual_machine" "vm" {
     sku       = "22_04-lts"
     version   = "latest"
   }
-}
 
-# Attach Disk
+  connection {
+    type        = "ssh"
+    user        = "moses-admin"
+    private_key = file("moseskey")
+    host        = azurerm_linux_virtual_machine.vm.public_ip_address
+    timeout     = "30s"
+  }
 
-resource "azurerm_managed_disk" "disk" {
-  name                 = "${var.virtual_machine_name}-disk1"
-  location             = azurerm_resource_group.rg.location
-  resource_group_name  = azurerm_resource_group.rg.name
-  storage_account_type = "Standard_LRS"
-  create_option        = "Empty"
-  disk_size_gb         = var.disk_size_gb
+  provisioner "file" {
+    source      = "templates/php.sh"
+    destination = "/tmp/php.sh"
+  }
 
-}
+  provisioner "file" {
+    source      = "moluskatopnotch.link_cert/moluskatopnotch.link.crt"
+    destination = "/tmp/demotsrlearning.com.crt"
+  }
 
-resource "azurerm_virtual_machine_data_disk_attachment" "disk_attachment" {
-  managed_disk_id    = azurerm_managed_disk.disk.id
-  virtual_machine_id = azurerm_linux_virtual_machine.vm.id
-  lun                = "10"
-  caching            = "ReadWrite"
+  provisioner "file" {
+    source      = "moluskatopnotch.link_key/moluskatopnotch.link_key.txt"
+    destination = "/tmp/moluskatopnotch.link_key.txt"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "echo Exporting credentials as variables with terraform",
+      "export db_user=${var.db_user}",
+      "export db_name=${var.db_name}",
+      "export linux_user=${var.linux_user}",
+      "sudo chmod +x /tmp/php.sh && /tmp/php.sh",
+    ]
+  }
 }
 
 
