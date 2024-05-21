@@ -17,15 +17,15 @@ resource "azurerm_subnet_network_security_group_association" "nsg_association" {
   network_security_group_id = azurerm_network_security_group.sg.id
 }
 
-resource "azurerm_network_interface" "nic" {
-  name                = coalesce(data.azurecaf_name.nic.result, var.nic_name)
-  location            = var.location
-  resource_group_name = var.resource_group_name
+# resource "azurerm_network_interface" "nic" {
+#   name                = coalesce(data.azurecaf_name.nic.result, var.nic_name)
+#   location            = var.location
+#   resource_group_name = var.resource_group_name
 
-  ip_configuration {
-    name                          = "devnicsnet"
-    subnet_id                     = azurerm_subnet.snet.id
-    private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = var.public_ip_address_id
-  }
-}
+#   ip_configuration {
+#     name                          = "devnicsnet"
+#     subnet_id                     = azurerm_subnet.snet.id
+#     private_ip_address_allocation = "Dynamic"
+#     public_ip_address_id          = var.public_ip_address_id
+#   }
+# }
