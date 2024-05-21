@@ -31,3 +31,10 @@ variable "nsg_name" {
 
 
 }
+
+# variable "virtual_machines" {
+#   description = "Virtual Machines to be deployed"
+#   type        = map(object({}))
+#   default     = {}
+
+# }

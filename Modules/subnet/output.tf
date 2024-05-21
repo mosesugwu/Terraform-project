@@ -17,3 +17,8 @@ output "nsg_name" {
   value = azurerm_network_security_group.sg.name
 
 }
+
+# output "nic_id" {
+#   value = azurerm_network_interface.nic.id
+  
+# }
